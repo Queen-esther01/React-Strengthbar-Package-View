@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import { Check, PasswordChecker } from 'react-password-strengthbar-ui';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [password, setPassword] = useState('');
+
+    const handlepassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const getData = (data) =>{
+        console.log(data)
+    }
+
+    let result = Check('password')
+    console.log(result)
+    
+
+    return (
+        <>
+            <div className='h-screen bg-sky-50 flex flex-col justify-center items-center'>
+                <div className='w-80 md:w-3/5 md:max-w-lg'>
+                    <h1 className='text-sky-900 text-center text-xl md:text-3xl mb-5'>@react-password-strengthbar-ui</h1>
+                    <input onChange={handlepassword} className='w-full rounded-md shadow py-2 px-4 focus:outline-sky-400'/>
+                    <PasswordChecker password={password} checkerData={getData}/>
+                </div>
+            </div>
+        </>
+    );
 }
 
 export default App;
